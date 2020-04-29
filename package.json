@@ -1,0 +1,19 @@
+{
+  "name": "populardishes",
+  "version": "1.0.0",
+  "description": "popular dish module on yelp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hrsf127Foragers/popularDishes.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hrsf127Foragers/popularDishes/issues"
+  },
+  "homepage": "https://github.com/hrsf127Foragers/popularDishes#readme"
+}
