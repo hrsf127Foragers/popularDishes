@@ -25,6 +25,12 @@ module.exports = {
     return Math.floor(Math.random() * (array.length));
   },
 
+  generateRandomNum: function (min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min) + min;
+  },
+
   generateRestaurant: function(id) {
     let randomName = names[this.randomNumberGenerator(names)];
     let randomFoodType = foodTypes[this.randomNumberGenerator(foodTypes)];
@@ -38,23 +44,55 @@ module.exports = {
     return restaurant;
   },
 
-  generatePictureComment: function () {
-    let randomFood = foodType2[this.randomNumberGenerator(foodType2)];
-    let adjectives = commentTypes[this.randomNumberGenerator(commentTypes)];
-    return `${adjectives} ${randomFood}`;
-  },
-
-  generateUserName: function() {
-    let randomFirstName = firstUserName[this.randomNumberGenerator(firstUserName)];
-    let randomInitial = lastInitial[this.randomNumberGenerator(lastInitial)];
-    return `${randomFirstName}.${randomInitial}`;
-  },
-
-  generateDish: function () {
+  generatePopDish: function (id) {
     let randomType1 = foodType[this.randomNumberGenerator(foodType)]
     let randomType2 = foodType2[this.randomNumberGenerator(foodType2)]
-    return `${randomType1} ${randomType2}`;
+    // return `${randomType1} ${randomType2}`;
+    let dishName = `${randomType1} ${randomType2}`;
+    let popDish = {
+      id: id,
+      name: dishName,
+      id_restaurants: this.generateRandomNum(1,100)
+    }
+    return popDish;
   },
+
+  generatePictures: function (id) {
+    let randomFood = foodType2[this.randomNumberGenerator(foodType2)];
+    let adjectives = commentTypes[this.randomNumberGenerator(commentTypes)];
+    let picCaption = `${adjectives} ${randomFood}`;
+    let foodPhoto = 'https://loremflickr.com/320/240/food';
+
+    let pictures = {
+      id: id,
+      caption: picCaption,
+      img: foodPhoto,
+      id_popularDish: this.generateRandomNum(1, 100)
+    }
+    return pictures;
+  },
+
+  generateUserName: function(id) {
+    let randomFirstName = firstUserName[this.randomNumberGenerator(firstUserName)];
+    let randomInitial = lastInitial[this.randomNumberGenerator(lastInitial)];
+    // return `${randomFirstName}.${randomInitial}`;
+    let nameOfUser = `${randomFirstName}.${randomInitial}`;
+    let avatarPic = 'https://loremflickr.com/320/240/avatar';
+    let users = {
+      id: id,
+      userName: nameOfUser,
+      avatar: avatarPic,
+      followers: this.generateRandomNum(1, 500),
+      numReviews: this.generateRandomNum(1, 300)
+    }
+    return users;
+  },
+
+  // generateDish: function () {
+  //   let randomType1 = foodType[this.randomNumberGenerator(foodType)]
+  //   let randomType2 = foodType2[this.randomNumberGenerator(foodType2)]
+  //   return `${randomType1} ${randomType2}`;
+  // },
 
   generateDate: function () {
     let randomMonth = month[this.randomNumberGenerator(month)];
@@ -63,7 +101,7 @@ module.exports = {
     return `${randomMonth}/${randomDay}/${randomYear}`;
   },
 
-  generateReview: function() {
+  generateReview: function(id) {
     const lorem = new LoremIpsum ({
       sentencesPerParagraph: {
         max: 3,
@@ -75,7 +113,16 @@ module.exports = {
       }
     });
     let numOfParagraphs = 1 + Math.floor(Math.random() * 3);
-    return lorem.generateParagraphs(numOfParagraphs)
+
+    let reviews = {
+      id: id,
+      reviews: lorem.generateParagraphs(numOfParagraphs),
+      date: this.generateDate(),
+      stars: this.generateRandomNum(1, 5),
+      id_popularDish: this.generateRandomNum(1, 100),
+      id_user: this.generateRandomNum(1, 100)
+    }
+    return reviews;
   }
 
 };
