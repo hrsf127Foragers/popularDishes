@@ -1,10 +1,11 @@
 const data = require('./seedData.js');
+const restaurant = {};
 
 const getRestaurants = () => {
   let results = [];
 
   for (var i = 0; i < 100; i++) {
-    results.push(data.generateRestaurant());
+    results.push(data.generateRestaurant(i));
   }
 
 return results;
@@ -50,12 +51,13 @@ const getPosts = () => {
 };
 
 module.exports = {
-  getRestaurants: getRestaurants,
-  getPosts: getPosts,
-  getDate: getDate,
-  getDish: getDish,
-  getRandomNum: getRandomNum,
-  getUser: getUser,
-  getFoodComment: getFoodComment
+  getRestaurants,
+  getPosts,
+  getDate,
+  getDish,
+  getRandomNum,
+  getUser,
+  getFoodComment
 }
 
+// console.log(getRestaurants())

@@ -25,11 +25,17 @@ module.exports = {
     return Math.floor(Math.random() * (array.length));
   },
 
-  generateRestaurant: function() {
+  generateRestaurant: function(id) {
     let randomName = names[this.randomNumberGenerator(names)];
     let randomFoodType = foodTypes[this.randomNumberGenerator(foodTypes)];
     let randomStoreType = storeTypes[this.randomNumberGenerator(storeTypes)];
-    return `${randomName}'s ${randomFoodType} ${randomStoreType}`;
+    let name = `${randomName}'s ${randomFoodType} ${randomStoreType}`;
+    let restaurant = {
+      id: id,
+      restaurantName: name,
+      cuisine: randomFoodType,
+    }
+    return restaurant;
   },
 
   generatePictureComment: function () {
