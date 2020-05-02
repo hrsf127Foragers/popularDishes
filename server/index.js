@@ -1,16 +1,16 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const seed = require('../database/seed.js');
 const app = express()
 const PORT = 3000
 
 
 app.use(bodyParser.json())
 
-// app.get('/restaurants/pictures', (req, res) => {
-//   res.send('I see you')
-// })
+app.get('/:restaurant_id/popular_dish', (req, res) => {
+  console.log(req.params.restaurant_id)
+  res.send('hello')
+})
 
 app.use(express.static(path.join(__dirname, '../client/dist')))
 

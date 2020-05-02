@@ -1,17 +1,63 @@
 const data = require('./seedData.js');
+const restaurant = {};
 
 const getRestaurants = () => {
   let results = [];
 
   for (var i = 0; i < 100; i++) {
-    results.push(data.generateRestaurant());
+    results.push(data.generateRestaurant(i));
   }
 
 return results;
   // console.log('Logging results => ', results);
 };
 
-// getRestaurants();
-module.exports = {
-  getRestaurants: getRestaurants
+const getDate = () => {
+  let date = data.generateDate();
+  return date;
+};
+const getFoodComment = () => {
+  let comment = data.generatePictureComment();
+  return comment;
 }
+
+const getUser = () => {
+  let results = [];
+  for (var i = 0; i < 100; i++) {
+    results.push(data.generateUserName())
+  }
+  return results;
+};
+
+const getRandomNum = (min, max) => {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min) + min;
+}
+const getDish = () => {
+  let results = [];
+  for(var i = 0; i < 100; i++) {
+    results.push(data.generateDish());
+  }
+  return results;
+};
+
+const getPosts = () => {
+  let results = [];
+  for(var i = 0; i < 100; i++) {
+    results.push(data.generateReview());
+  }
+  return results;
+};
+
+module.exports = {
+  getRestaurants,
+  getPosts,
+  getDate,
+  getDish,
+  getRandomNum,
+  getUser,
+  getFoodComment
+}
+
+// console.log(getRestaurants())
