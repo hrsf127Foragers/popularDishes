@@ -21,7 +21,7 @@ let firstUserName = ['Mgd','dawg','Mik','Jaz','Happy','Lorz','Gdm', 'Mary','Bob'
 let lastInitial = ['A','K','P','L','S','Z','E','J','W','T'];
 
 module.exports = {
-  randomNumberGenerator: function(array) {
+  randomIndexGenerator: function(array) {
     return Math.floor(Math.random() * (array.length));
   },
 
@@ -32,9 +32,9 @@ module.exports = {
   },
 
   generateRestaurant: function(id) {
-    let randomName = names[this.randomNumberGenerator(names)];
-    let randomFoodType = foodTypes[this.randomNumberGenerator(foodTypes)];
-    let randomStoreType = storeTypes[this.randomNumberGenerator(storeTypes)];
+    let randomName = names[this.randomIndexGenerator(names)];
+    let randomFoodType = foodTypes[this.randomIndexGenerator(foodTypes)];
+    let randomStoreType = storeTypes[this.randomIndexGenerator(storeTypes)];
     let name = `${randomName}'s ${randomFoodType} ${randomStoreType}`;
     let restaurant = {
       id: id,
@@ -45,21 +45,21 @@ module.exports = {
   },
 
   generatePopDish: function (id) {
-    let randomType1 = foodType[this.randomNumberGenerator(foodType)]
-    let randomType2 = foodType2[this.randomNumberGenerator(foodType2)]
+    let randomType1 = foodType[this.randomIndexGenerator(foodType)]
+    let randomType2 = foodType2[this.randomIndexGenerator(foodType2)]
     // return `${randomType1} ${randomType2}`;
     let dishName = `${randomType1} ${randomType2}`;
     let popDish = {
       id: id,
       name: dishName,
-      id_restaurants: this.generateRandomNum(1,100)
+      id_restaurants: this.generateRandomNum(1,10)
     }
     return popDish;
   },
 
   generatePictures: function (id) {
-    let randomFood = foodType2[this.randomNumberGenerator(foodType2)];
-    let adjectives = commentTypes[this.randomNumberGenerator(commentTypes)];
+    let randomFood = foodType2[this.randomIndexGenerator(foodType2)];
+    let adjectives = commentTypes[this.randomIndexGenerator(commentTypes)];
     let picCaption = `${adjectives} ${randomFood}`;
     let foodPhoto = 'https://loremflickr.com/320/240/food';
 
@@ -67,14 +67,14 @@ module.exports = {
       id: id,
       caption: picCaption,
       img: foodPhoto,
-      id_popularDish: this.generateRandomNum(1, 100)
+      id_popularDish: this.generateRandomNum(1, 20)
     }
     return pictures;
   },
 
   generateUserName: function(id) {
-    let randomFirstName = firstUserName[this.randomNumberGenerator(firstUserName)];
-    let randomInitial = lastInitial[this.randomNumberGenerator(lastInitial)];
+    let randomFirstName = firstUserName[this.randomIndexGenerator(firstUserName)];
+    let randomInitial = lastInitial[this.randomIndexGenerator(lastInitial)];
     // return `${randomFirstName}.${randomInitial}`;
     let nameOfUser = `${randomFirstName}.${randomInitial}`;
     let avatarPic = 'https://loremflickr.com/320/240/avatar';
@@ -88,16 +88,10 @@ module.exports = {
     return users;
   },
 
-  // generateDish: function () {
-  //   let randomType1 = foodType[this.randomNumberGenerator(foodType)]
-  //   let randomType2 = foodType2[this.randomNumberGenerator(foodType2)]
-  //   return `${randomType1} ${randomType2}`;
-  // },
-
   generateDate: function () {
-    let randomMonth = month[this.randomNumberGenerator(month)];
-    let randomDay = day[this.randomNumberGenerator(day)];
-    let randomYear = year[this.randomNumberGenerator(year)];
+    let randomMonth = month[this.randomIndexGenerator(month)];
+    let randomDay = day[this.randomIndexGenerator(day)];
+    let randomYear = year[this.randomIndexGenerator(year)];
     return `${randomMonth}/${randomDay}/${randomYear}`;
   },
 
@@ -119,8 +113,8 @@ module.exports = {
       reviews: lorem.generateParagraphs(numOfParagraphs),
       date: this.generateDate(),
       stars: this.generateRandomNum(1, 5),
-      id_popularDish: this.generateRandomNum(1, 100),
-      id_user: this.generateRandomNum(1, 100)
+      id_popularDish: this.generateRandomNum(1, 25),
+      id_user: this.generateRandomNum(1, 25)
     }
     return reviews;
   }
