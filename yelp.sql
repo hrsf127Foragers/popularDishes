@@ -10,8 +10,8 @@ CREATE TABLE users
   id int AUTO_INCREMENT NOT NULL,
   userName varchar (150) NOT NULL,
   avatar TEXT NOT NULL,
-  reviews TEXT NOT NULL,
-  stars int NOT NULL,
+  numOfReviews int NOT NULL,
+  followers int NOT NULL,
   PRIMARY KEY (ID)
 );
 

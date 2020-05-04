@@ -4,7 +4,7 @@ const connection = require('../server/helper/restaurants.js');
 
 const restaurantSeed = () => {
   var restaurantNames = connection.getRestaurants();
-  console.log(restaurantNames)
+  // console.log(restaurantNames)
   for(var i = 0; i < restaurantNames.length; i++) {
       var name = restaurantNames[i]['restaurantName'];
       var arrName = name.split(" ");
@@ -19,11 +19,14 @@ const restaurantSeed = () => {
 };
 
 const photo = () => {
-  for ( var i = 0; i < 100; i++) {
-    var foodPhoto = 'https://loremflickr.com/320/240/food';
-    var comment = connection.getFoodComment();
-    var randomNum = connection.getRandomNum(1, 100);
-    db.query(`INSERT INTO pictures (caption, images, id_populardishes) VALUES ("${comment}", "${foodPhoto}","${randomNum}")`, (error) => {
+  let pictures = connection.getPictures();
+  // console.log(pictures)
+  for ( let i = 0; i < pictures.length; i++) {
+    let caption = pictures[i]['caption'];
+    let image = pictures[i]['img'];
+    let id_popDish = pictures[i]['id_popularDish'];
+
+    db.query(`INSERT INTO pictures (caption, images, id_populardishes) VALUES ("${caption}", "${image}","${id_popDish}")`, (error) => {
       if (error) {
         console.log('This is error =>', error)
       }
@@ -33,10 +36,12 @@ const photo = () => {
 
 const popDish = () => {
   var dish = connection.getDish();
+  // console.log(dish);
   for (var i = 0; i < dish.length; i++) {
-    var randomNum = connection.getRandomNum(1,100);
-    var popularDish = dish[i]
-    db.query(`INSERT INTO populardishes (dish, id_restaurants) VALUES ("${popularDish}","${randomNum}")`, (error) => {
+    // var randomNum = connection.getRandomNum(1,100);
+    var popularDish = dish[i]['name'];
+    var id_restaurants = dish[i]['id_restaurants'];
+    db.query(`INSERT INTO populardishes (dish, id_restaurants) VALUES ("${popularDish}","${id_restaurants}")`, (error) => {
       if (error) {
         console.log('This is error =>', error)
       }
@@ -45,15 +50,17 @@ const popDish = () => {
 };
 
 const users = () => {
-  var name = connection.getUser();
-  var posts = connection.getPosts();
-  for (var i = 0; i < name.length; i++) {
-    var star = 1 + Math.floor(Math.random() * 5);
-    var randomNumPost = connection.getRandomNum(1, 100);
-    var avatar = 'https://loremflickr.com/320/240/avatar';
-    var reviews = posts[randomNumPost];
-    var user = name[i];
-    db.query(`INSERT INTO users (userName, avatar, reviews, stars) VALUES ("${user}","${avatar}", "${reviews}","${star}")`, (error) => {
+  let name = connection.getUser();
+  // console.log(name)
+  // let posts = connection.getReviews();
+  for (let i = 0; i < name.length; i++) {
+      let user = name[i]['userName'];
+    // console.log(user)
+      let avatarPic = name[i]['avatar'];
+      let follower = name[i]['followers'];
+      let numReviews = name[i]['numReviews'];
+
+    db.query(`INSERT INTO users (userName, avatar, numOfReviews, followers) VALUES ("${user}","${avatarPic}", "${numReviews}","${follower}")`, (error) => {
       if (error) {
         console.log('This is error =>', error)
       }
@@ -62,23 +69,25 @@ const users = () => {
 };
 
 const reviewSeed = () => {
-  var posts = connection.getPosts();
-  for (var i = 0; i < posts.length; i++) {
-    var date = connection.getDate();
-    var star = 1+ Math.floor(Math.random()*5);
-    var randomNum = connection.getRandomNum(1, 100);
-    var randomNum2 = connection.getRandomNum(1, 100);
-    var review = posts[i];
-    db.query(`INSERT INTO reviews (review, dates, stars, id_populardishes, id_users) VALUES ("${review}", "${date}", "${star}", "${randomNum}", "${randomNum2}")`, (error) => {
+  let posts = connection.getReviews();
+  // console.log(posts)
+  for (let i = 0; i < posts.length; i++) {
+    let date = posts[i]['date'];
+    let stars = posts[i]['stars'];
+    let reviewPost = posts[i]['reviews'];
+    let id_populardishes = posts[i]['id_popularDish'];
+    let id_user = posts[i]['id_user'];
+
+    db.query(`INSERT INTO reviews (review, dates, stars, id_populardishes, id_users) VALUES ("${reviewPost}", "${date}", "${stars}", "${id_populardishes}", "${id_user}")`, (error) => {
       if (error) {
         console.log('This is error=>', error)
       }
     })
   }
 }
-// users();
-// restaurantSeed();
-// popDish();
-// photo();
-// reviewSeed();
-restaurantSeed()
+users();
+restaurantSeed();
+popDish();
+photo();
+reviewSeed();
+

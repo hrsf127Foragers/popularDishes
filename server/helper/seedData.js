@@ -21,14 +21,20 @@ let firstUserName = ['Mgd','dawg','Mik','Jaz','Happy','Lorz','Gdm', 'Mary','Bob'
 let lastInitial = ['A','K','P','L','S','Z','E','J','W','T'];
 
 module.exports = {
-  randomNumberGenerator: function(array) {
+  randomIndexGenerator: function(array) {
     return Math.floor(Math.random() * (array.length));
   },
 
+  generateRandomNum: function (min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min) + min;
+  },
+
   generateRestaurant: function(id) {
-    let randomName = names[this.randomNumberGenerator(names)];
-    let randomFoodType = foodTypes[this.randomNumberGenerator(foodTypes)];
-    let randomStoreType = storeTypes[this.randomNumberGenerator(storeTypes)];
+    let randomName = names[this.randomIndexGenerator(names)];
+    let randomFoodType = foodTypes[this.randomIndexGenerator(foodTypes)];
+    let randomStoreType = storeTypes[this.randomIndexGenerator(storeTypes)];
     let name = `${randomName}'s ${randomFoodType} ${randomStoreType}`;
     let restaurant = {
       id: id,
@@ -38,32 +44,58 @@ module.exports = {
     return restaurant;
   },
 
-  generatePictureComment: function () {
-    let randomFood = foodType2[this.randomNumberGenerator(foodType2)];
-    let adjectives = commentTypes[this.randomNumberGenerator(commentTypes)];
-    return `${adjectives} ${randomFood}`;
+  generatePopDish: function (id) {
+    let randomType1 = foodType[this.randomIndexGenerator(foodType)]
+    let randomType2 = foodType2[this.randomIndexGenerator(foodType2)]
+    // return `${randomType1} ${randomType2}`;
+    let dishName = `${randomType1} ${randomType2}`;
+    let popDish = {
+      id: id,
+      name: dishName,
+      id_restaurants: this.generateRandomNum(1,20)
+    }
+    return popDish;
   },
 
-  generateUserName: function() {
-    let randomFirstName = firstUserName[this.randomNumberGenerator(firstUserName)];
-    let randomInitial = lastInitial[this.randomNumberGenerator(lastInitial)];
-    return `${randomFirstName}.${randomInitial}`;
+  generatePictures: function (id) {
+    let randomFood = foodType2[this.randomIndexGenerator(foodType2)];
+    let adjectives = commentTypes[this.randomIndexGenerator(commentTypes)];
+    let picCaption = `${adjectives} ${randomFood}`;
+    let foodPhoto = 'https://loremflickr.com/320/240/food';
+
+    let pictures = {
+      id: id,
+      caption: picCaption,
+      img: foodPhoto,
+      id_popularDish: this.generateRandomNum(1, 20)
+    }
+    return pictures;
   },
 
-  generateDish: function () {
-    let randomType1 = foodType[this.randomNumberGenerator(foodType)]
-    let randomType2 = foodType2[this.randomNumberGenerator(foodType2)]
-    return `${randomType1} ${randomType2}`;
+  generateUserName: function(id) {
+    let randomFirstName = firstUserName[this.randomIndexGenerator(firstUserName)];
+    let randomInitial = lastInitial[this.randomIndexGenerator(lastInitial)];
+    // return `${randomFirstName}.${randomInitial}`;
+    let nameOfUser = `${randomFirstName}.${randomInitial}`;
+    let avatarPic = 'https://loremflickr.com/320/240/avatar';
+    let users = {
+      id: id,
+      userName: nameOfUser,
+      avatar: avatarPic,
+      followers: this.generateRandomNum(1, 300),
+      numReviews: this.generateRandomNum(1, 200)
+    }
+    return users;
   },
 
   generateDate: function () {
-    let randomMonth = month[this.randomNumberGenerator(month)];
-    let randomDay = day[this.randomNumberGenerator(day)];
-    let randomYear = year[this.randomNumberGenerator(year)];
+    let randomMonth = month[this.randomIndexGenerator(month)];
+    let randomDay = day[this.randomIndexGenerator(day)];
+    let randomYear = year[this.randomIndexGenerator(year)];
     return `${randomMonth}/${randomDay}/${randomYear}`;
   },
 
-  generateReview: function() {
+  generateReview: function(id) {
     const lorem = new LoremIpsum ({
       sentencesPerParagraph: {
         max: 3,
@@ -75,7 +107,16 @@ module.exports = {
       }
     });
     let numOfParagraphs = 1 + Math.floor(Math.random() * 3);
-    return lorem.generateParagraphs(numOfParagraphs)
+
+    let reviews = {
+      id: id,
+      reviews: lorem.generateParagraphs(numOfParagraphs),
+      date: this.generateDate(),
+      stars: this.generateRandomNum(1, 5),
+      id_popularDish: this.generateRandomNum(1, 25),
+      id_user: this.generateRandomNum(1, 25)
+    }
+    return reviews;
   }
 
 };
