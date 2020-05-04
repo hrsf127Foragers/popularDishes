@@ -15,6 +15,9 @@ app.use(bodyParser.json())
 app.get('/:restaurant_id/popular_dish', model.fetchPopDish);
 
 app.get('/:populardish_id/pictures', model.fetchPictures);
+app.get('/:populardish_id/reviews', model.fetchReviews);
+app.get('/:id_users/users', model.fetchUsers);
+
 
 app.use(express.static(path.join(__dirname, '../client/dist')))
 
@@ -22,10 +25,3 @@ app.listen(PORT, () => {
   console.log(`Are you spying on my port: ${PORT}?`)
 })
 
-//app.post, app.get, app.delete, app.put
-// app.post ('/restaurants', (req, res) => {
-//   res.send('hello')
-// })
-// app.get('/restaurants', (req, res) => {
-//   res.send(req)
-// })

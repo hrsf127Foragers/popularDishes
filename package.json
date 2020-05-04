@@ -10,6 +10,7 @@
     "seed": "mysql -u root -p < yelp.sql",
     "seed-tables": "nodemon database/seed.js",
     "generateData": "node server/helper/restaurants.js > dummyData.js"
+
   },
   "author": "Beth Johnson",
   "license": "ISC",
@@ -27,7 +28,7 @@
     "lorem-ipsum": "^2.0.3",
     "mysql": "^2.16.0",
     "nodemon": "^2.0.3",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   }
 }

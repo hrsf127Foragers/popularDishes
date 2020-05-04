@@ -52,7 +52,7 @@ module.exports = {
     let popDish = {
       id: id,
       name: dishName,
-      id_restaurants: this.generateRandomNum(1,10)
+      id_restaurants: this.generateRandomNum(1,20)
     }
     return popDish;
   },
@@ -82,8 +82,8 @@ module.exports = {
       id: id,
       userName: nameOfUser,
       avatar: avatarPic,
-      followers: this.generateRandomNum(1, 500),
-      numReviews: this.generateRandomNum(1, 300)
+      followers: this.generateRandomNum(1, 300),
+      numReviews: this.generateRandomNum(1, 200)
     }
     return users;
   },
