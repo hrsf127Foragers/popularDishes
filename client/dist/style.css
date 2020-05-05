@@ -1,0 +1,86 @@
+/* .pictureWrapper {
+  display: grid;
+  grid-template-columns: 320px 320px 320px 320px 320px;
+  grid-template-rows: 240px;
+  column-gap: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+} */
+.picture-container {
+   width: 900px;
+   height: 276px;
+   margin-left: 100px;
+   margin-top: 400px;
+  /* margin: auto; */
+  /* height: 500px; */
+  /* overflow: hidden; */
+
+}
+
+.pictureWrapper {
+  display: flex;
+  width: 80%;
+  height: 200px;
+  padding: 20px;
+  padding-bottom: 50px;
+  overflow: hidden;
+ /* justify-content: space-between; */
+}
+
+.mySlides {
+
+  width: 50%;
+  height: 200px;
+  border-top-left-radius: 1px;
+}
+.photo {
+   border-top-left-radius: 10%;
+   border-top-right-radius: 10%;
+   width: 192px;
+   height: 120px;
+   padding: 10px;
+}
+.popdishText {
+  display: grid;
+  grid-template-columns: 16% 16% 16% 16% 16% 16%;
+  grid-template-rows: 30px;
+  align-self: end;
+}
+
+.fullMenu {
+  /* grid-column-start: 5;
+  grid-column-end: 6; */
+  grid-column: 5 / span 2;
+  align-self: end;
+  font-family: Open Sans;
+  margin-left: 80px;
+}
+.popDish{
+  margin-left: 35px;
+  /* grid-column-start: 1;
+  grid-column-end: 1; */
+   grid-column: 1 / span 2;
+  align-self: end;
+  font-family: Open Sans;
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  color: #2b273c;
+  font-weight: 800;
+  font-size: 20px;
+}
+
+.dishName {
+  font-family: Open Sans;
+  color: #2b273c;
+  font-weight: 800;
+  font-size: 16px;
+  margin-left: 12px;
+}
+.photoReview {
+  font-family: Open Sans;
+  color: #5d5d61;
+  font-weight: 500;
+  font-size: 12px;
+  margin-left: 12px;
+}
