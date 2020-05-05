@@ -9,26 +9,33 @@
     "start": "nodemon server/index.js",
     "seed": "mysql -u root -p < yelp.sql",
     "seed-tables": "nodemon database/seed.js",
-    "generateData": "node server/helper/restaurants.js > dummyData.js"
-
+    "generateData": "node server/helper/restaurants.js > dummyData.js",
+    "test": "jest"
   },
   "author": "Beth Johnson",
   "license": "ISC",
   "devDependencies": {
-    "babel-core": "^6.23.1",
-    "babel-loader": "^6.3.2",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.23.0",
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/preset-react": "^7.9.4",
+    "jest-environment-enzyme": "^7.1.2",
+    "jest-enzyme": "^7.1.2",
     "webpack": "^2.2.1"
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "babel-jest": "^26.0.1",
+    "babel-loader": "^8.1.0",
     "body-parser": "^1.19.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
     "express": "^4.15.0",
+    "jest": "^26.0.1",
     "lorem-ipsum": "^2.0.3",
     "mysql": "^2.16.0",
     "nodemon": "^2.0.3",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-test-renderer": "^16.13.1"
   }
 }
