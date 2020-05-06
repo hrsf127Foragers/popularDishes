@@ -61,7 +61,7 @@ module.exports = {
     let randomFood = foodType2[this.randomIndexGenerator(foodType2)];
     let adjectives = commentTypes[this.randomIndexGenerator(commentTypes)];
     let picCaption = `${adjectives} ${randomFood}`;
-    let foodPhoto = 'https://loremflickr.com/320/240/food';
+    let foodPhoto = `https://loremflickr.com/320/240/meal?random=${this.generateRandomNum(1, 20)}`;
 
     let pictures = {
       id: id,
@@ -77,7 +77,7 @@ module.exports = {
     let randomInitial = lastInitial[this.randomIndexGenerator(lastInitial)];
     // return `${randomFirstName}.${randomInitial}`;
     let nameOfUser = `${randomFirstName}.${randomInitial}`;
-    let avatarPic = 'https://loremflickr.com/320/240/avatar';
+    let avatarPic = `https://loremflickr.com/320/240/selfie?random=${this.generateRandomNum(1, 20)}`;
     let users = {
       id: id,
       userName: nameOfUser,
