@@ -1,12 +1,13 @@
 import React from 'react';
+import styles from './PictureListStyle.css'
 
 const PictureList = ({name, image}) => (
 
-      <div className="mySlides">
-        <img className="photo" src= {image} alt="FOOD1"></img>
+      <div className={styles.mySlides}>
+        <img className={styles.photo} src= {image} alt="FOOD1"></img>
         <br></br>
-        <div className="dishName">{name}</div>
-        <div className="photoReview">11 photos - 10 reviews</div>
+        <div className={styles.dishName}>{name}</div>
+        <div className={styles.photoReview}>11 photos - 10 reviews</div>
       </div>
 );
 

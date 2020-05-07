@@ -1,8 +1,8 @@
 import PictureList from './PictureList.jsx';
 import PopularDishList from './PopularDishList.jsx';
-import ReviewsList from './ReviewsList.jsx';
-import Module from './Module.jsx';
-
+import style from './PopularDishStyle.css';
+import Modal from './Modal.jsx';
+// import App from './App.css';
 import axios from 'axios';
 import React from 'react';
 
@@ -62,7 +62,8 @@ class App extends React.Component {
   };
 
   previousSlides() {
-      document.getElementById('pictureWrapper').scrollLeft -= 600;
+    document.getElementById('pictureWrapper').scrollLeft -= 600;
+
   };
 
 
@@ -75,7 +76,6 @@ class App extends React.Component {
       <div>
         <br></br>
         <PopularDishList dishes={this.state.popular_dishes} back={this.previousSlides} next={this.nextSlides}/>
-        <ReviewsList/>
       </div>
     )
   }
