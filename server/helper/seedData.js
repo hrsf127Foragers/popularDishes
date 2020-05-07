@@ -49,10 +49,12 @@ module.exports = {
     let randomType2 = foodType2[this.randomIndexGenerator(foodType2)]
     // return `${randomType1} ${randomType2}`;
     let dishName = `${randomType1} ${randomType2}`;
+    let foodPhoto = `https://loremflickr.com/320/240/meal?random=${this.generateRandomNum(1, 25)}`;
     let popDish = {
       id: id,
       name: dishName,
-      id_restaurants: this.generateRandomNum(1,20)
+      image: foodPhoto,
+      id_restaurants: this.generateRandomNum(1, 25)
     }
     return popDish;
   },
@@ -61,13 +63,13 @@ module.exports = {
     let randomFood = foodType2[this.randomIndexGenerator(foodType2)];
     let adjectives = commentTypes[this.randomIndexGenerator(commentTypes)];
     let picCaption = `${adjectives} ${randomFood}`;
-    let foodPhoto = `https://loremflickr.com/320/240/meal?random=${this.generateRandomNum(1, 20)}`;
+    let foodPhoto = `https://loremflickr.com/320/240/meal?random=${this.generateRandomNum(1, 25)}`;
 
     let pictures = {
       id: id,
       caption: picCaption,
-      img: foodPhoto,
-      id_popularDish: this.generateRandomNum(1, 20)
+      image: foodPhoto,
+      id_popularDish: this.generateRandomNum(1, 40)
     }
     return pictures;
   },
@@ -77,7 +79,7 @@ module.exports = {
     let randomInitial = lastInitial[this.randomIndexGenerator(lastInitial)];
     // return `${randomFirstName}.${randomInitial}`;
     let nameOfUser = `${randomFirstName}.${randomInitial}`;
-    let avatarPic = `https://loremflickr.com/320/240/selfie?random=${this.generateRandomNum(1, 20)}`;
+    let avatarPic = `https://loremflickr.com/320/240/selfie?random=${this.generateRandomNum(1, 25)}`;
     let users = {
       id: id,
       userName: nameOfUser,
@@ -113,8 +115,8 @@ module.exports = {
       reviews: lorem.generateParagraphs(numOfParagraphs),
       date: this.generateDate(),
       stars: this.generateRandomNum(1, 5),
-      id_popularDish: this.generateRandomNum(1, 25),
-      id_user: this.generateRandomNum(1, 25)
+      id_popularDish: this.generateRandomNum(1, 20),
+      id_user: this.generateRandomNum(1, 15)
     }
     return reviews;
   }

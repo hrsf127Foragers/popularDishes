@@ -1,69 +1,80 @@
 import PictureList from './PictureList.jsx';
 import PopularDishList from './PopularDishList.jsx';
-// import ImageSlides from './ImageSlides.jsx';
 import ReviewsList from './ReviewsList.jsx';
 import Module from './Module.jsx';
-import Arrow from './Arrow.jsx';
+
 import axios from 'axios';
 import React from 'react';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
+    let generateRandomNum = (min, max)=> {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min) + min) + min;
+    };
     this.state = {
       popular_dishes: [],
       reviews: [],
       pictures: [],
-      restaurant: '',
-      currentImageIndex: 0
+      restaurant: generateRandomNum(1,15),
+      currentImageIndex: 0,
+      popDishId: "",
     }
-    // this.previousSlide = this.previousSlide.bind(this);
-    // this.nextSlide = this.nextSlide.bind(this);
-
+    this.previousSlides = this.previousSlides.bind(this);
+    this.nextSlides = this.nextSlides.bind(this);
+    this.getPopDish = this.getPopDish.bind(this);
+    this.getPopDishPictures = this.getPopDishPictures.bind(this);
   }
 
-  // previousSlide() {
-  //   const lastIdx = imgUrl.length-1;
-  //   const {currentImageIndex} = this.state;
-  //   const shouldResetIdx = currentImageIndex === 0;
-  //   const idx = shouldResetIdx ? lastIdx: currentImageIndex-1;
-  //   this.setState({
-  //     currentImageIndex: idx
-  //   });
+  // nextThreePix() {
+
   // }
 
-  // nextSlide(){
-  // const lastIdx = imgUrl.length - 1;
-  // const { currentImageIndex } = this.state;
-  // const shouldResetIdx = currentImageIndex === lastIdx;
-  // const idx = shouldResetIdx ? 0: currentImageIndex + 1;
-  // this.setState({
-  //   currentImageIndex: idx
-  // });
-  // }
+
+  handleError(error) {
+    console.log(error);
+  };
+  //invoke methods to get our datas back
+
+  componentDidMount() {
+    this.getPopDish();
+    // this.getPopDishPictures();
+  };
+
+  getPopDish() {
+    axios.get(`/${this.state.restaurant}/popular_dish`)
+      .then((response) => {
+        console.log('this is popular dish response=> ',response)
+        this.setState({popular_dishes: response.data, restaurant: response.data[0].id_restaurants})
+      })
+      .catch(this.handleError)
+  };
+
+  getPopDishPictures() {
+  axios.get(`/3/pictures`)
+    .then((response) => {
+      console.log('this is popular dish picture response=> ', response)
+      this.setState({ pictures: response.data })
+    })
+    .catch(this.handleError)
+  };
+
+  previousSlides() {
+      document.getElementById('pictureWrapper').scrollLeft -= 600;
+  };
+
+
+  nextSlides(){
+    document.getElementById('pictureWrapper').scrollLeft += 600;
+  };
 
   render() {
     return (
       <div>
-        {/* <h3>Popular Dishes</h3>
-        <h5> View Full Menu </h5> */}
-        {/* <div className="carousel">
-          <Arrow
-            direction="left"
-            clickFunction={this.previousSlide}
-            glyph="&#9664;" />
-
-          <Arrow
-            direction="right"
-            clickFunction={this.nextSlide}
-            glyph="&#9654;" />
-          <ImageSlides url={imgUrl} />
-          {/* <PictureList /> */}
-
-        {/* </div> */}
         <br></br>
-          <PictureList />
-        <PopularDishList/>
+        <PopularDishList dishes={this.state.popular_dishes} back={this.previousSlides} next={this.nextSlides}/>
         <ReviewsList/>
       </div>
     )

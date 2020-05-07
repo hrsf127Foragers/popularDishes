@@ -16,22 +16,32 @@
   /* overflow: hidden; */
 
 }
+/* .example::-webkit-scrollbar {
+  display: none;
+} */
 
-.pictureWrapper {
+#pictureWrapper {
   display: flex;
   width: 80%;
   height: 200px;
   padding: 20px;
   padding-bottom: 50px;
   overflow: hidden;
+  overflow-x: scroll;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+
+  /* scroll-snap-points-x: repeat(300px); */
  /* justify-content: space-between; */
 }
+
 
 .mySlides {
 
   width: 50%;
   height: 200px;
   border-top-left-radius: 1px;
+  /* counter-increment: mySlides; */
 }
 .photo {
    border-top-left-radius: 10%;
@@ -83,4 +93,21 @@
   font-weight: 500;
   font-size: 12px;
   margin-left: 12px;
+}
+
+#slideL {
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+  border-bottom-left-radius: 50%;
+  font-size: x-large;
+  margin-right: 2px;
+}
+#slideR {
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+  border-bottom-left-radius: 50%;
+  font-size: x-large;
+  margin-right: 2px;
 }

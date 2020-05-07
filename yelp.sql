@@ -30,6 +30,7 @@ CREATE TABLE populardishes
   id int AUTO_INCREMENT NOT NULL,
   dish varchar (150) NOT NULL,
   id_restaurants INT NOT NULL,
+  images  TEXT NOT NULL,
   PRIMARY KEY(ID),
   FOREIGN KEY (id_restaurants) REFERENCES restaurants(id)
 );
