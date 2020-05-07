@@ -10,7 +10,9 @@
     "seed": "mysql -u root -p < yelp.sql",
     "seed-tables": "nodemon database/seed.js",
     "generateData": "node server/helper/restaurants.js > dummyData.js",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage --colors"
   },
   "author": "Beth Johnson",
   "license": "ISC",
@@ -23,6 +25,10 @@
     "webpack": "^2.2.1"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.13.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.28",
+    "@fortawesome/free-solid-svg-icons": "^5.13.0",
+    "@fortawesome/react-fontawesome": "^0.1.9",
     "axios": "^0.19.2",
     "babel-jest": "^26.0.1",
     "babel-loader": "^8.1.0",

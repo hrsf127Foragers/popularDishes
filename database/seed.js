@@ -23,7 +23,7 @@ const photo = () => {
   // console.log(pictures)
   for ( let i = 0; i < pictures.length; i++) {
     let caption = pictures[i]['caption'];
-    let image = pictures[i]['img'];
+    let image = pictures[i]['image'];
     let id_popDish = pictures[i]['id_popularDish'];
 
     db.query(`INSERT INTO pictures (caption, images, id_populardishes) VALUES ("${caption}", "${image}","${id_popDish}")`, (error) => {
@@ -40,8 +40,9 @@ const popDish = () => {
   for (var i = 0; i < dish.length; i++) {
     // var randomNum = connection.getRandomNum(1,100);
     var popularDish = dish[i]['name'];
+    var image = dish[i]['image'];
     var id_restaurants = dish[i]['id_restaurants'];
-    db.query(`INSERT INTO populardishes (dish, id_restaurants) VALUES ("${popularDish}","${id_restaurants}")`, (error) => {
+    db.query(`INSERT INTO populardishes (dish, images, id_restaurants) VALUES ("${popularDish}","${image}","${id_restaurants}")`, (error) => {
       if (error) {
         console.log('This is error =>', error)
       }
