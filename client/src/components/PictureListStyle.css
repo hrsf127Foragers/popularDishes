@@ -1,0 +1,29 @@
+.mySlides {
+  width: 50%;
+  height: 200px;
+  border-top-left-radius: 1px;
+}
+
+.photo {
+   border-top-left-radius: 10%;
+   border-top-right-radius: 10%;
+   width: 192px;
+   height: 120px;
+   padding: 10px;
+}
+
+.dishName {
+  font-family: Open Sans;
+  color: #2b273c;
+  font-weight: 800;
+  font-size: 16px;
+  margin-left: 12px;
+}
+
+.photoReview {
+font-family: Open Sans;
+color: #5d5d61;
+font-weight: 500;
+font-size: 12px;
+margin-left: 12px;
+}

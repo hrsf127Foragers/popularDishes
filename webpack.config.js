@@ -9,7 +9,7 @@ module.exports = {
     path: DIST_DIR
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx?/,
         include: SRC_DIR,
@@ -17,7 +17,21 @@ module.exports = {
         query: {
           presets: ['@babel/preset-react', '@babel/preset-env']
         }
-      }
+      },
+      {
+        test: /\.css$/i,
+        exclude: /node_modules/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              localIdentName: "[name]__[local]___[hash:base64:5]"
+            },
+          },
+        ],
+      },
     ]
   }
 };
